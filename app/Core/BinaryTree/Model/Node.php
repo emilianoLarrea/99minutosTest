@@ -26,17 +26,17 @@ class Node {
     public function setLeftNode($node){
        $this->leftNode = $node;
     }
+
     public function setRightNode($node){
        $this->rightNode = $node;
     }
-    public function getLeftNode(){
+
+    public function getLeftNode(): ?Node {
        return $this->leftNode;
     }
-    public function getRightNode(){
+
+    public function getRightNode(): ?Node {
        return $this->rightNode;
-    }
-    public function isLeaf(){
-        return $this->leftNode === null && $this->rightNode === null;
     }
 
     public function getId(): int

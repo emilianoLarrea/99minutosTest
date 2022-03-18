@@ -46,7 +46,7 @@ class BinaryTree
         return $added;
     }
 
-    public function addNodeById($id) {
+    public function addNodeById($id): void {
         $node = new Node($id);
         if ($this->isEmptyRoot()) {
             $this->root = $node;
@@ -61,7 +61,7 @@ class BinaryTree
         return $this->root;
     }
 
-    public function calculateHeight()
+    public function calculateHeight(): void
     {
         if ($this->isEmptyRoot()) {
             $this->height = 0;
@@ -73,7 +73,7 @@ class BinaryTree
         }
     }
 
-    protected function _calculateHeight(?Node $node, int $height) {
+    protected function _calculateHeight(?Node $node, int $height): void {
         if (empty($node)) {
             return $height;
         } else {
