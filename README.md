@@ -1,24 +1,101 @@
-# Lumen PHP Framework
+# Introducción
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Este es un proyecto propuesto por 99Minutos a modo de Desafío Técnico. 
+La solución consiste en un proyecto php, desarrollando una API utilizando Lumen 7, estructurada por dominios e implementada de manera "agnóstica" al framework.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+# Casos de uso
 
-## Official Documentation
+- Retornar la altura de un Árbol Binario, dada una lista de enteros. 
+- Retornar los nodos vecinos del nodo que contiene el entero dado.
+- Retornar la búsqueda en anchura (BFS) del árbol binario.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+# API
 
-## Contributing
+### Retornar la altura de un Árbol Binario, dada una lista de enteros:
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```http
+POST /v1/b-trees/height
+```
+| Parámetro | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `toTree` | `list` | **Requerido**. Lista de enteros, a partir de la cuál se construirá el árbol binario. |
+En este endpoint se realizan las siguientes tareas:
+- Construir el árbol binario.
+- Calcular su altura máxima
+  
+La altura de un árbol binario se define recursivamente de la siguiente manera:
+- si el árbol es vacío su altura es 0
+- si el árbol no es vacío su altura es 1 más que el máximo de las alturas de sus hijos.
+  
+De los siguientes árboles, el de la izquierda tiene altura 3 y el de la derecha tiene altura 4.
 
-## Security Vulnerabilities
+![img.png](img.png)
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+#### Respuesta:
 
-## License
+```json
+{
+    "height": <entero-que-representa-altura>
+}
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Retornar los nodos vecinos del nodo que contiene el entero dado:
+```http
+POST /v1/b-trees/neighbors
+```
+| Parámetro | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `toTree` | `list` | **Requerido**. Lista de enteros, a partir de la cuál se construirá el árbol binario. |
+| `node`   | `int` | **Requerido**. Número entero que representa el id de un nodo. |
+En este endpoint se realizan las siguientes tareas:
+- Construir el árbol binario.
+- Buscar el nodo identificado por el entero `node`.
+- Encontrar los identificadores de los nodos a su izquierda y derecha respectivamente.
+
+####Respuesta:
+```json
+{
+    "neighbors": [
+        "left": <número-entero-identificador-de-un-nodo>,
+        "right": <número-entero-identificador-de-un-nodo>
+    ]
+}
+ ```
+
+### Retornar la búsqueda en anchura (BFS) del árbol binario:
+```http
+POST /v1/b-trees/bfs
+```
+| Parámetro | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `toTree` | `list` | **Requerido**. Lista de enteros, a partir de la cuál se construirá el árbol binario. |
+
+En este endpoint se realizan las siguientes tareas:
+- Construir el árbol binario.
+- Recorrer el árbol desde la raíz utilizando el algoritmo de búsqueda en anchura.
+- Retornar los identificadores de los nodos, en el orden en que fueron recorridos.
+
+####Respuesta:
+```json
+{
+    "bfs": [
+        <identificador-de-nodo>,
+        ...
+    ]
+}
+ ```
+
+# Puesta en marcha
+
+Para poder utilizar el proyecto ejecutar el siguiente comando, en la carpeta raíz del mismo.
+```
+  php -S localhost:8000 -t public
+```
+
+Luego podrá utilizar los endpoints mencionados en la documentación, utilizando:
+
+```
+127.0.0.1:8000/{uri-del-endpoint-requerido}
+``` 
+
+#### Se puede descargar la colección de endpoints para postman desde [este link](https://www.getpostman.com/collections/09218a178ba73c0830aa).
