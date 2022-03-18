@@ -6,7 +6,7 @@ use App\Core\BinaryTree\Model\BinaryTree;
 use App\Core\BinaryTree\Model\Node;
 use App\Core\BinaryTree\Service\Exception\InvalidArgumentException;
 
-class BinaryTreeSearcher implements IBinaryTreeService
+class BinaryTreeNodeSearcher implements IBinaryTreeService
 {
     /**
      * @var BinaryTree

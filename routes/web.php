@@ -11,9 +11,10 @@
 |
 */
 
+use App\Core\BinaryTree\Service\BreadthFirstSearcher;
 use \Illuminate\Http\Request;
 use App\Core\BinaryTree\Service\BinaryTreeConstructor;
-use App\Core\BinaryTree\Service\BinaryTreeSearcher;
+use App\Core\BinaryTree\Service\BinaryTreeNodeSearcher;
 
 $router->post('/v1/b-trees/height', function (Request $request) use ($router) {
     $service = new BinaryTreeConstructor();
@@ -28,7 +29,7 @@ $router->post('/v1/b-trees/neighbors', function (Request $request) use ($router)
     $bTreeConstructor = new BinaryTreeConstructor();
     $bTree = $bTreeConstructor->execute($body);
 
-    $bTreeSearcher = new BinaryTreeSearcher();
+    $bTreeSearcher = new BinaryTreeNodeSearcher();
     $result = $bTreeSearcher
         ->fromBTree($bTree)
         ->execute($body);
@@ -39,4 +40,16 @@ $router->post('/v1/b-trees/neighbors', function (Request $request) use ($router)
     $rightNodeResponse = !empty($rightNode) ? $rightNode->getId() : null;
 
     return response()->json(['neighbors' => ['left' => $leftNodeResponse, 'right' => $rightNodeResponse]]);
+});
+
+$router->post('/v1/b-trees/bfs', function (Request $request) use ($router) {
+    $body = $request->toArray();
+    $bTreeConstructor = new BinaryTreeConstructor();
+    $bTree = $bTreeConstructor->execute($body);
+
+    $bTreeBTS = new BreadthFirstSearcher();
+    $result = $bTreeBTS
+        ->fromBTree($bTree)
+        ->execute($body);
+    return response()->json(['bfs' => $result]);
 });
