@@ -3,6 +3,12 @@
 Este es un proyecto propuesto por 99Minutos a modo de Desafío Técnico. 
 La solución consiste en un proyecto php, desarrollando una API utilizando Lumen 7, estructurada por dominios e implementada de manera "agnóstica" al framework.
 
+# Arquitectura
+
+La arquitectura del proyecto esta basada por los fundamentos de Lumen, a la cual se agregó la sección app/Core en donde se encuentran los diferentes dominios con sus servicios, lógica del negocio y modelos. 
+
+En el archivo routes/web.php se encuentran las definiciones de los diferentes endpoints.
+
 # Casos de uso
 
 - Retornar la altura de un Árbol Binario, dada una lista de enteros. 
