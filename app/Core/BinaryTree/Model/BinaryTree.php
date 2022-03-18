@@ -13,7 +13,7 @@ class BinaryTree
      */
     protected $height = 0;
 
-    protected function isEmptyRoot(): bool {
+    public function isEmptyRoot(): bool {
         return empty($this->root);
     }
 
