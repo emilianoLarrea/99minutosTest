@@ -52,7 +52,7 @@ En este endpoint se realizan las siguientes tareas:
 - Buscar el nodo identificado por el entero `node`.
 - Encontrar los identificadores de los nodos a su izquierda y derecha respectivamente.
 
-####Respuesta:
+#### Respuesta:
 ```json
 {
     "neighbors": [
@@ -75,7 +75,7 @@ En este endpoint se realizan las siguientes tareas:
 - Recorrer el árbol desde la raíz utilizando el algoritmo de búsqueda en anchura.
 - Retornar los identificadores de los nodos, en el orden en que fueron recorridos.
 
-####Respuesta:
+#### Respuesta:
 ```json
 {
     "bfs": [
@@ -87,8 +87,16 @@ En este endpoint se realizan las siguientes tareas:
 
 # Puesta en marcha
 
-Para poder utilizar el proyecto ejecutar el siguiente comando, en la carpeta raíz del mismo.
+Requerimientos de instalación:
+
+| Requerimientos | Versión |
+| :--- | :--- |
+| <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" /> | 7.2 o superior. |  
+| <img src="https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=Composer&logoColor=white"/> | 2.0 o superior. |  
+
+Una vez instalados los requerimientos ejecutar los siguientes comandos, en la carpeta raíz del mismo.
 ```
+  composer install
   php -S localhost:8000 -t public
 ```
 
